@@ -17,6 +17,8 @@ public class Hooks {
     public static String studentToken;
     public static RequestSpecification librarianSpec;
     public static ResponseSpecification libraryResponseSpec;
+    public static RequestSpecification studentSpec;
+    public static ResponseSpecification studentResponseSpec;
     @BeforeAll
     public static void init(){
         baseURI=ConfigurationReader.getProperty("library.baseUri");
@@ -24,8 +26,13 @@ public class Hooks {
         librarianToken = getToken(ConfigurationReader.getProperty("librarian_username"), ConfigurationReader.getProperty("librarian_password"));
         studentToken = getToken(ConfigurationReader.getProperty("student_username"), ConfigurationReader.getProperty("student_password"));
         DB_Util.createConnection(ConfigurationReader.getProperty("library2.db.url"), ConfigurationReader.getProperty("library2.db.username"),ConfigurationReader.getProperty("library2.db.password"));
-        librarianSpec=given().header("x-library-token",librarianToken);
+        librarianSpec=given().accept(ContentType.JSON).header("x-library-token",librarianToken);
         libraryResponseSpec=expect().logDetail(LogDetail.BODY)
+                .statusCode(200)
+                .contentType(ContentType.JSON);
+
+        studentSpec=given().accept(ContentType.JSON).header("x-library-token",librarianToken);
+        studentResponseSpec=expect().logDetail(LogDetail.BODY)
                 .statusCode(200)
                 .contentType(ContentType.JSON);
     }
