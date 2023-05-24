@@ -9,5 +9,7 @@ Feature: As a librarian, I want to create a new user
     And the field value for "message" path should be equal to "The user has been created."
     And "user_id" field should not be null
     And created user information should match with Database
+    Then newly created user can login into system
+
 
 
