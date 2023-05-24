@@ -20,4 +20,23 @@ public class LibraryUtil {
 
         return bookMap ;
     }
+    public static Map<String,Object> getRandomUserMap(){
+
+        Faker faker = new Faker() ;
+        Map<String,Object> bookMap = new LinkedHashMap<>();
+        String fullName = faker.name().fullName();
+        String email=fullName.substring(0,fullName.indexOf(" "))+"@library";
+        System.out.println(email);
+        bookMap.put("full_name", fullName );
+        bookMap.put("email", email);
+        bookMap.put("password", "libraryUser");
+        // 2 is librarian as role
+        bookMap.put("user_group_id",2);
+        bookMap.put("status", "ACTIVE");
+        bookMap.put("start_date", "2023-03-11");
+        bookMap.put("end_date", "2024-03-11");
+        bookMap.put("address", faker.address().cityName());
+
+        return bookMap ;
+    }
 }

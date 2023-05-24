@@ -1,0 +1,13 @@
+{
+  "full_name": "Lord Voldemort",
+  "email": "lord@library",
+  "password": "123",
+  "user_group_id": "1",
+  "image": null,
+  "extra_data": null,
+  "status": "ACTIVE",
+  "is_admin": "1",
+  "start_date": "2023-02-03",
+  "end_date": "2024-03-31",
+  "address": "test"
+}
